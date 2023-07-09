@@ -1,5 +1,6 @@
 # Wilayah-Indonesia
 Wilayah indonesia
+untuk data wilayah dari repo berikut : [Repo](https://github.com/cahyadsn/wilayah.git).
 ## Split menjadi 4 table
 
 ```
