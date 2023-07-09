@@ -43,3 +43,19 @@ CREATE TABLE master_kelurahan (
 
 
 ```
+
+## Migration ke 4 Table
+
+```
+INSERT INTO master_provinsi (id, kode, nama)
+SELECT kode AS id, kode, nama FROM wilayah WHERE LENGTH(kode) = 2;
+
+INSERT INTO master_kota_kabupaten (id, master_provinsi_id, kode, nama)
+SELECT kode AS id, SUBSTRING(kode, 1, 2) AS master_provinsi_id, kode, nama FROM wilayah WHERE LENGTH(kode) = 5;
+
+INSERT INTO master_kecamatan (id, master_kota_kabupaten_id, kode, nama)
+SELECT kode AS id, SUBSTRING(kode, 1, 5) AS master_kota_kabupaten_id, kode, nama FROM wilayah WHERE LENGTH(kode) = 8;
+
+INSERT INTO master_kelurahan (id, master_kecamatan_id, kode, nama)
+SELECT kode AS id, SUBSTRING(kode, 1, 8) AS master_kecamatan_id, kode, nama FROM wilayah WHERE LENGTH(kode) = 13;
+```
